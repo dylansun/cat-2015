@@ -1,5 +1,5 @@
 library(xgboost)
-load("../data/data2.RData")
+load("../data/data.RData")
 X_train <- train[,-match(c("id","cost"), names(train))]
 X_test <- test[,-match(c("id","cost"), names(test))]
 

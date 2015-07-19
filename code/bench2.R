@@ -78,11 +78,11 @@ library(randomForest)
 # sqrt(mean((log(dtest_cv$cost + 1) - log(pred + 1))^2)) # 0.2410004
 
 ### Train randomForest on the whole training set
-rf = randomForest(log(train$cost + 1)~., train[,-match(c("id", "cost"), names(train))], ntree = 20, do.trace = 2)
-
+set.seed(123)
+rf = randomForest(log(train$cost + 1)~., train[,-match(c("id", "cost"), names(train))], importance = T, ntree = 10, do.trace = 2)
 pred = exp(predict(rf, test)) - 1
 
 submitDb = data.frame(id = test$id, cost = pred)
 submitDb = aggregate(data.frame(cost = submitDb$cost), by = list(id = submitDb$id), mean)
 
-write.csv(submitDb, "../res/bench2.csv", row.names = FALSE, quote = FALSE)
+write.csv(submitDb, "../res/rf_123.csv", row.names = FALSE, quote = FALSE)

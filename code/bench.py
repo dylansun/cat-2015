@@ -1,11 +1,3 @@
-"""
-Beating the Benchmark 
-Caterpillar @ Kaggle
-
-__author__ : Abhishek
-
-"""
-
 import pandas as pd
 import numpy as np
 from sklearn import ensemble, preprocessing
